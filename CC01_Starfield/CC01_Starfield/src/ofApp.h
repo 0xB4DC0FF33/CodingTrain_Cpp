@@ -1,11 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
+#include "../Star.h"
 
 class ofApp : public ofBaseApp{
 
 	public:
 		void setup();
-		void update();
-		void draw();		
+		void draw();
+
+		int starCount;
+		Star* stars;
 };
