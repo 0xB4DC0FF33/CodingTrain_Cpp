@@ -37,10 +37,10 @@ void Snake::update() {
 	}
 
 	// makes the tail "follow" the head only if the snake is moving
-	//if (pPos != pos) {
+	if (pPos != pos) {
 		tail.push_back(pPos);
 		tail.erase(tail.begin());
-	//}
+	}
 }
 
 // Draws the snake
