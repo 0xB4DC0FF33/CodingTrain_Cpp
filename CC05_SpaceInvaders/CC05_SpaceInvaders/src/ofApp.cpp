@@ -6,9 +6,12 @@ extern int timer;
 //--------------------------------------------------------------
 void ofApp::setup(){
 	lastShot = 0;
+	aliensPos = ofVec2f(200, 0);
+	aliensDir = 1; // 1 = Move left   |  -1 = Move Right
+	aliensLastDir = aliensDir;
 	for (int i = 0; i < 11; i++) {
 		for (int j = 0; j < 5; j++) {
-			aliens.push_back(Alien(i * 40 + 200 + (i * 10), j*40));
+			aliens.push_back(Alien(i * 50 + aliensPos.x, j*40));
 		}
 	}
 }
@@ -16,6 +19,24 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	timer = ofGetElapsedTimeMillis();
+	cout << aliensPos << endl;
+	// if aliens havn't move since 500ms
+	if (timer - aliensLastMove > 100) {
+		if ((aliensPos.x == 10 || aliensPos.x >= ofGetWidth()-(50*11+10)) && aliensLastDir == aliensDir) {
+			move = ofVec2f(ofVec2f(0, 20));
+			aliensLastDir = aliensDir;
+			aliensDir = -aliensDir;
+		} else {
+			move = ofVec2f(-(10 * aliensDir), 0);
+			aliensLastDir = aliensDir;
+		}
+		// move aliens
+		for (size_t i = 0; i < aliens.size(); i++) {			
+			aliens[i].pos = aliens[i].pos + move;
+		}
+		aliensPos = aliens[0].pos;
+		aliensLastMove = timer;
+	}
 }
 
 //--------------------------------------------------------------
@@ -35,7 +56,6 @@ void ofApp::draw(){
 				aliens[j].explosionTime = timer;
 				aliens[j].isAlive = false;
 				lasers[i].isActive = false; // Only deactivate the laser for the moment, cannot remove it now
-				cout << "GOOD !" << endl;
 			}
 		}
 

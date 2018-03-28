@@ -26,7 +26,3 @@ void Alien::show() {
 	}
 	
 }
-
-void Alien::move(int dir) {
-	pos.x += dir * 4;
-}

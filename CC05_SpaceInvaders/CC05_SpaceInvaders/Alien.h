@@ -14,7 +14,7 @@ public:
 	ofVec2f pos;
 
 	void show();
-	void move(int dir);
+	//void move(int dir);
 
 	bool isAlive;
 	int explosionTime; // Keeps tracks of when the alien was destroyed

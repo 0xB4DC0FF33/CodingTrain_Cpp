@@ -19,6 +19,10 @@ class ofApp : public ofBaseApp{
 		vector<Alien> aliens; 
 		vector<Laser> lasers;
 
-		int alienCount;
+		int aliensDir;
+		int aliensLastDir;
 		int lastShot;
+		int aliensLastMove;
+		ofVec2f aliensPos;
+		ofVec2f move;
 };
