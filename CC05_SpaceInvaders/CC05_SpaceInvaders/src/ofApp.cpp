@@ -19,9 +19,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	timer = ofGetElapsedTimeMillis();
-	cout << aliensPos << endl;
 	// if aliens havn't move since 500ms
-	if (timer - aliensLastMove > 100) {
+	if (timer - aliensLastMove > 500) {
 		if ((aliensPos.x == 10 || aliensPos.x >= ofGetWidth()-(50*11+10)) && aliensLastDir == aliensDir) {
 			move = ofVec2f(ofVec2f(0, 20));
 			aliensLastDir = aliensDir;
